@@ -1,3 +1,4 @@
-export const actionTypes = {
-    CHANGE_SECTION: 'CHANGE_SECTION'
-}
+
+export const CHANGE_SECTION = 'CHANGE_SECTION';
+export const GET_MOVIES = 'GET_MOVIES';
+export const GET_FAVOURITES = 'GET_FAVOURITES';

@@ -1,14 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import ENVIRONMENT from '../../../environments/environment';
+import React, { useState } from 'react';
+import store from '../../store/store';
 import { from, BehaviorSubject } from 'rxjs';
-import { map, filter, delay, mergeMap, debounceTime, distinctUntilChanged } from 'rxjs/operators';
-
-const getMoviesByName = async name => {
-    const { Search: response } =  await fetch(
-        `${ENVIRONMENT.SERVICE_URL}?s=${name}&plot=full&apikey=${ENVIRONMENT.API_KEY}`
-    ).then(res => res.json());
-    return response;
-}
+import { getMoviesByName } from '../../services/getMoviesByName';
+import { useObservable } from '../../utils/handlers/userObservable';
+import { GET_MOVIES } from '../../store/actions';
+import { filter, mergeMap, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 let searchSubject = new BehaviorSubject('');
 let searchResultObservable = searchSubject.pipe(
@@ -18,20 +14,12 @@ let searchResultObservable = searchSubject.pipe(
     mergeMap(val => from(getMoviesByName(val)))
 );
 
-
-const useObservable = (observable, setter) => {
-    useEffect(() => {
-        let subscription = observable.subscribe(result => {
-            setter(result);
-        })
-
-        return () => subscription.unsubscribe();
-    }, [observable, setter]);
-};
-
 function SearchBar() {
     const [search, setSearch] = useState('');
-    const [results, setResults] = useState([]);
+    const setResults = (results) => {
+        console.log(results);
+        store.dispatch({type: GET_MOVIES, payload: results});
+    };
 
     useObservable(searchResultObservable, setResults);
 
@@ -41,15 +29,12 @@ function SearchBar() {
         searchSubject.next(newValue);
     }
     return (
-        <div>
-            <input
-                type="text"
-                placeholder="Search movie"
-                value={search}
-                onChange={handleSearchChange}
-            />
-            <div>{JSON.stringify(results, null, 2)}</div>
-        </div>
+        <input
+            type="text"
+            placeholder="Search movie"
+            value={search}
+            onChange={handleSearchChange}
+        />
     );
 }
 

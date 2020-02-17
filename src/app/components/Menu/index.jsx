@@ -1,14 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import store from '../../store/store';
-import { actionTypes } from '../../store/actions';
+import { CHANGE_SECTION } from '../../store/actions';
 import './style.css';
 
 
 function Menu(props) {
     const { section } = props;
     const goToSection = (section) => {
-        store.dispatch({type: actionTypes.CHANGE_SECTION, payload: section});
+        store.dispatch({type: CHANGE_SECTION, payload: section});
     };
     const toHome = () => {
         goToSection('HOME');
