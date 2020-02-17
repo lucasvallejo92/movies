@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import store from '../../store/store';
 import { actionTypes } from '../../store/actions';
+import './style.css';
 
 
 function Menu(props) {
@@ -25,10 +26,10 @@ function Menu(props) {
             <div className="collapse navbar-collapse" id="navbarNav">
                 <ul className="navbar-nav">
                     <li className={`nav-item ${section == 'HOME' ? 'active' : ''}`}>
-                        <a className="nav-link" onClick={toHome}>Home</a>
+                        <a className="nav-link pointer" onClick={toHome}>Home</a>
                     </li>
                     <li className={`nav-item ${section == 'FAVOURITE' ? 'active' : ''}`}>
-                        <a className="nav-link" onClick={toFav}>Favourites</a>
+                        <a className="nav-link pointer" onClick={toFav}>Favourites</a>
                     </li>
                 </ul>
             </div>
