@@ -1,10 +1,11 @@
 import React from 'react';
+import SearchBar from '../../components/SearchBar'
 
 function Movies() {
 
     return (
-        <div>
-            <p>MOVIES SECTION</p>
+        <div className="row">
+            <SearchBar/>
         </div>
     );
 }

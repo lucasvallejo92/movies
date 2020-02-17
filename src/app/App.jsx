@@ -7,13 +7,14 @@ import Favourite from './scenes/Favourite';
 
 function App(props) {
   const { section } = props;
-  const homeSection = () => section == 'HOME';
   return (
     <div className="App">
       <Menu/>
-      {
-        (section == 'HOME' && <Movies/>) || <Favourite/>
-      }
+      <div className="container">
+        {
+          (section == 'HOME' && <Movies/>) || <Favourite/>
+        }
+      </div>
     </div>
   );
 }
