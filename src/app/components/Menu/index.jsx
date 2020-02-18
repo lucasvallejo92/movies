@@ -25,10 +25,10 @@ function Menu(props) {
             </button>
             <div className="collapse navbar-collapse" id="navbarNav">
                 <ul className="navbar-nav">
-                    <li className={`nav-item ${section == 'HOME' ? 'active' : ''}`}>
+                    <li className={`nav-item ${section === 'HOME' ? 'active' : ''}`}>
                         <a className="nav-link pointer" onClick={toHome}>Home</a>
                     </li>
-                    <li className={`nav-item ${section == 'FAVOURITE' ? 'active' : ''}`}>
+                    <li className={`nav-item ${section === 'FAVOURITE' ? 'active' : ''}`}>
                         <a className="nav-link pointer" onClick={toFav}>Favourites</a>
                     </li>
                 </ul>

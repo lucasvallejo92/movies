@@ -1,4 +1,6 @@
-import { CHANGE_SECTION, GET_MOVIES, GET_FAVOURITES } from './actions';
+import { CHANGE_SECTION, GET_MOVIES, GET_FAVOURITES, REMOVE_FAVOURITE, SET_FAVOURITE } from './actions';
+import { moviesResponseHandler } from '../utils/handlers/moviesResponseHandler';
+import { getFavourites, setFavourite, removeFavourite, favHandler } from '../utils/handlers/favouritesHandler';
 
 const initialState = {
   section: 'HOME',
@@ -16,12 +18,24 @@ switch(action.type) {
   case GET_MOVIES:
     return {
       ...state,
-      movies: action.payload
+      movies: moviesResponseHandler(action.payload, state.favourites)
     };
   case GET_FAVOURITES:
     return {
       ...state,
-      favourites: action.payload
+      favourites: getFavourites()
+    };
+  case SET_FAVOURITE:
+    return {
+      ...state,
+      favourites: setFavourite(action.payload, state.favourites),
+      movies: favHandler(state.movies, state.favourites)
+    };
+  case REMOVE_FAVOURITE:
+    return {
+      ...state,
+      favourites: removeFavourite(action.payload, state.favourites),
+      movies: favHandler(state.movies, state.favourites)
     };
   default:
     return state;
