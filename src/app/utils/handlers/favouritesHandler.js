@@ -11,6 +11,7 @@ export const setFavourite = (favourite, favourites = []) => {
         }
     });
     if (!duplicated) {
+        favourite.fav = true;
         favourites.push(favourite);
         localStorage.setItem('favourites', JSON.stringify(favourites));
         return favourites;

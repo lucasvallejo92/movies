@@ -1,0 +1,9 @@
+.poster {
+    max-height: 450px;
+    max-width: 300px;
+}
+
+.movie-detail {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}

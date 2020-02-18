@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import store from '../../store/store';
 import { CHANGE_SECTION } from '../../store/actions';
-import './style.css';
 
 
 function Menu(props) {

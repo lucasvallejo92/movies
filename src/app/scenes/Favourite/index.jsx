@@ -1,12 +1,22 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import Card from '../../components/Card';
 
-function Favourite() {
-
+function Favourite(props) {
+    const { favourites } = props;
     return (
-        <div>
-            <p>FAVOURITE SECTION</p>
+        <div className="row">
+            {
+                favourites.map(value => (
+                    <Card key={value.id} movie={value} />
+                ))
+            }
         </div>
     );
 }
 
-export default Favourite;
+const mapStateToProps = (state) => ({
+    favourites: state.favourites
+});
+
+export default connect(mapStateToProps)(Favourite);
