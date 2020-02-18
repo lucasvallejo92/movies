@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import store from '../../store/store';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHeart, faHeartBroken } from '@fortawesome/free-solid-svg-icons';
 import { SET_FAVOURITE, REMOVE_FAVOURITE, CHANGE_SECTION } from '../../store/actions';
 import { getMoviesById } from '../../services/getMovieById';
 
@@ -18,15 +20,15 @@ function Card({ movie }) {
         store.dispatch({type: CHANGE_SECTION, payload: 'DETAIL'});
     }
     return (
-        <div className="col-md-4">
+        <div className="col-md-4 pb-4">
             <div className="card movie-card text-white bg-dark">
                 <img className="card-img-top pointer" onClick={toDetail} src={movie.Poster} alt={movie.Title}></img>
                 <div className="card-body">
                     <h5 className="card-title pointer" onClick={toDetail}>{movie.Title}</h5>
                     <p className="card-text">{movie.Year}</p>
                     {
-                        (fav && <button onClick={removeOfFav} className="btn btn-primary">Remove favourite</button>) ||
-                        (!fav && <button onClick={setAsFav} className="btn btn-primary">Set as favourite</button>)
+                        (fav && <button onClick={removeOfFav} className="btn btn-primary"><FontAwesomeIcon icon={faHeartBroken} /> Remove favourite</button>) ||
+                        (!fav && <button onClick={setAsFav} className="btn btn-primary"><FontAwesomeIcon icon={faHeart} /> Set as favourite</button>)
                     }
                 </div>
             </div>

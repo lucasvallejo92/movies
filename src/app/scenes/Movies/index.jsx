@@ -8,7 +8,8 @@ function Movies(props) {
     return (
         <div>
             <div className="row">
-                <div className="col-md-12">
+                <div className="col-md-12 align-self-center pt-4 pb-4">
+                    <h4 className="pb-2">Search by movie name:</h4>
                     <SearchBar/>
                 </div>
             </div>
